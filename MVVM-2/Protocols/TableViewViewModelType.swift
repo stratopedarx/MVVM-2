@@ -17,4 +17,9 @@ protocol TableViewViewModelType {
 
     // метод должен вернуть новую вью модель. будем использовать протокол
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelType?
+
+    // для передачи вьюМодел
+    func viewModelForSelectedRow() -> DetailViewModelType?
+    // вспомогательный метод для индекс патх
+    func selectRow(atIndexPath indexPath: IndexPath)
 }
