@@ -18,4 +18,5 @@ class TableViewCell: UITableViewCell {
             ageLabel.text = viewModel.age
         }
     }
+
 }
