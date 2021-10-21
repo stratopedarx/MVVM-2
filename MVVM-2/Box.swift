@@ -9,17 +9,18 @@ import Foundation
 
 // класс обертка
 class Box<T> {
-    typealias Listener = (T) -> ()
     // что бы добавить наблюдателя, надо сначала создать его в качестве свойства
-    var listener: Listener? // наблюдатель
+    typealias Listener = (T) -> ()
+    var listener: Listener? // наблюдатель должен принимать значение и потом делаем какой-то блок кода
     
-    // за этим свойством будет происходить наблюдение
+    // за этим свойством будет происходить наблюдение. За ним следит наблюдатель
     var value: T {
         didSet {
-            // как только меняется value, мы в listener передаем наше значение
+            // как только меняется value, мы в listener передаем наше новое значение
             listener?(value)
         }
     }
+
     init(_ value: T) {
         self.value = value
     }
@@ -27,6 +28,6 @@ class Box<T> {
     // связываем свойство и наблюдателя
     func bind(listener: @escaping Listener) {
         self.listener = listener
-        listener(value)
+        listener(value)  // всё будет работать и без этой строки, но мы переждаем, потому что первое значение может выпасть.
     }
 }
